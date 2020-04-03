@@ -10,13 +10,13 @@ RCT_EXPORT_METHOD(addEvent:(NSString *)name details:(NSDictionary *)details)
 {
     NSString *location = [RCTConvert NSString:details[@"location"]];
     NSDate *time = [RCTConvert NSDate:details[@"time"]];
-    RCTLogInfo(@"Pretending to create an event %@ at %@", name, location, time);
+    RCTLogInfo(@"Pretending to create an event %@ at %@ on the %@", name, location, time);
 }
 
 RCT_EXPORT_METHOD(findEvents:(RCTResponseSenderBlock)callback)
 {
     NSString *events = @"Event 1";
-    callback(@[[NSNull null], events])
+    callback(@[[NSNull null], events]);
 }
 
 @end
