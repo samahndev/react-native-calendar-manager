@@ -5,9 +5,17 @@
 
 RCT_EXPORT_MODULE()
 
-RCT_EXPORT_METHOD(addEvent:(NSString *)name location:(NSString *)location date:(NSDate *)date)
+RCT_EXPORT_METHOD(addEvent:(NSString *)name details:(NSDictionary *)details)
 {
-    RCTLogInfo(@"Pretending to create an event %@ at %@", name, location, date);
+    NSString *location = [RCTConvert NSString:details[@"location"]];
+    NSDate *time = [RCTConvert NSDate:details[@"time"]];
+    RCTLogInfo(@"Pretending to create an event %@ at %@", name, location, time);
+}
+
+RCT_EXPORT_METHOD(findEvents:(RCTResponseSenderBlock)callback)
+{
+    NSString *events = @"Event 1";
+    callback(@[[NSNull null], events])
 }
 
 @end
