@@ -13,10 +13,19 @@ RCT_EXPORT_METHOD(addEvent:(NSString *)name details:(NSDictionary *)details)
     RCTLogInfo(@"Pretending to create an event %@ at %@ on the %@", name, location, time);
 }
 
-RCT_EXPORT_METHOD(findEvents:(RCTResponseSenderBlock)callback)
+RCT_REMAP_METHOD(
+    findEvents,
+    findEventsWithResolver:(RCTPromiseResolveBlock)resolve
+    rejecter:(RCTPromiseRejectBlock)reject)
 {
-    NSString *events = @"Event 1";
-    callback(@[[NSNull null], events]);
+    NSArray *events = @[@"Event 1", @"Event 2", @"Event 3"];
+    if (events) {
+        RCTLogInfo(@"events avail");
+        resolve(events);
+    } else {
+        RCTLogInfo(@"events NOT avail");
+        reject(@"no_even;ts", @"There were no events");
+    }
 }
 
 @end
